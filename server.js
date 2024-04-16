@@ -3,6 +3,8 @@ const mongoose = require("mongoose")
 
 const hotelRouter = require("./routes/hotel.router")
 const hotelDataAddedToDBRouter = require("./routes/dataimport.router")
+const categoryDataAddedToDBRouter = require("./routes/categoryimport.router")
+const categoryRouter = require("./routes/category.router")
 
 const connectDB = require("./config/dbconfig")
 
@@ -17,7 +19,9 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/hoteldata", hotelDataAddedToDBRouter)
+app.use("/api/categorydata", categoryDataAddedToDBRouter)
 app.use("/api/hotels", hotelRouter)
+app.use("/api/category", categoryRouter)
 
 mongoose.connection.once("open", () => {
   console.log("DB connected")
